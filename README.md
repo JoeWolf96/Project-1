@@ -3,6 +3,8 @@
 
 as a user i will have a character and make it explore the rooms 
 
+as a user i will see my character icon move into the room
+
 as a user i will encounter battles and have options 
 
 as a user i will have  an event log telling me what happens

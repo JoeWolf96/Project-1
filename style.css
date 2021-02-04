@@ -1,6 +1,9 @@
 html{
 
 	background : url(images/page-background.jpg);
+	background-color:black;
+	background-repeat: no-repeat;
+	background-position:absolute;
 	-webkit-background-size : cover;
 	-moz-background-size : cover;
 	-o-background-size :cover;
@@ -11,6 +14,21 @@ h1{
 	text-align:center;
 	color:crimson;
 }
-.flex-container{
 
+.dungeon{
+    display: flex;                      
+    flex-wrap: wrap;                     
+    justify-content: space-around;
+
+ 
+}
+
+.room{
+	
+    text-align: center;
+    color:white;
+    flex: 0 0 32%;                       
+    height: 50px;
+    margin-bottom: 5px;
+  
 }

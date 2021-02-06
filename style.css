@@ -48,13 +48,28 @@ h1{
 
 .log-area { 
 	grid-area: log-area; 
+
 }
+
+ #log{
+ 	height:100%;
+ 	background-color:gray;
+ 	text-align:bottom;
+ 	
+ }
+
 .inventory { 
 	grid-area: inventory;
  }
+
+#Inventory{
+	height:100%;
+ 	background-color:gray;
+ 	text-align:bottom;
+}
 .name {
     grid-area: name;
-    background-color:gray;
+    background:url(images/text-background.jpg);
 
 }
 .start- { 

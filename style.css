@@ -15,20 +15,52 @@ h1{
 	color:crimson;
 }
 
-.dungeon{
-    display: flex;                      
-    flex-wrap: wrap;                     
-    justify-content: space-around;
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.6fr 2.1fr 0.6fr;
+  grid-template-rows: 0.4fr 2.3fr 0.3fr;
+  grid-template-areas:
+    ". name ."
+    "log-area game-area inventory"
+    ". start- .";
+}
+
+.dungeon {
+    grid-area: game-area;
+    
+    display:flex;
+    flex-wrap:wrap-reverse;
+    justify-content: center;
+    color:white;
+ }
+
+
+ .room{
+ 	background: url(images/thumb.jpg);
+    flex: 0 30% ;
+    height: 100px;
+    margin-bottom:0px
+
+ }
 
  
+
+
+.log-area { 
+	grid-area: log-area; 
+}
+.inventory { 
+	grid-area: inventory;
+ }
+.name {
+    grid-area: name;
+    background-color:gray;
+
+}
+.start- { 
+	grid-area: start-; 
+	color:white;
 }
 
-.room{
-	
-    text-align: center;
-    color:white;
-    flex: 0 0 32%;                       
-    height: 50px;
-    margin-bottom: 5px;
-  
-}
+
+

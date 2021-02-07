@@ -1,15 +1,32 @@
 //need a hero
-const class Hero={
-	.contructor(name){
-		this.name="name"
-		this.health=100
+ class Hero {
+	constructor(){
+		this.name="Belmont";
+		this.health=100;
 		this.weapon={
-			name="Whip",
-			damage=5
+			name:"whip",
+			damage:5
+		}
+	}
+
+	announceHealth() {
+
+		console.log(this.health);
+
+	}
+
+	raiseWeapon() {
+
+		console.log(this.name+" raises his "+this.weapon.name);
+
 	}
 
 }
 
+const belmont = new Hero();
+console.log(belmont)
+belmont.announceHealth();
+belmont.raiseWeapon()
 //need an enemy class
 //need a monkey
 //need a final boss
@@ -17,4 +34,4 @@ const class Hero={
 // spells items
 //inventory
 //log
-const pipo=document.getElementById("log").setAttribute("pipo")
+//movement

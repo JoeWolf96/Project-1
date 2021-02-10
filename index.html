@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="jquery-3.5.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>
 		
 	</title>
@@ -14,7 +14,10 @@
 <h1>Enter The Dungeon</h1>
 
 <script type=" text/javascript" src="js.js"></script>
+
+
 <div class="grid-container">
+
   <div class="dungeon">
   	
   	<div class="room room1">1</div>
@@ -24,30 +27,40 @@
   	<div class="room room5">5</div>
   	<div class="room room6">6</div>
   	<div class="room room7">7</div>
-  	<div class="room room8">8</div>
-  	<div class="room room9">9</div>
-  	<div class="room room10">10</div>
 
   </div>
-  <div class="log-area">
+
+
+  <div class="log_area">
+
   	 <input type="text"
   	        id   ="log"
   	        value="testing"
   	        readonly=true />
   </div>
 
+
+<div class="button-group">
+  <button class="button-left">left</button>
+  <button class="button-up">up</button>
+  <button class="button-right">right</button>
+  <button class="button-down">down</button>
+</div>  
+
+
+
   <div class="inventory">
   	 <input type="text"
   	        id   ="inventory"
   	        value="inventory"
-  	        readonly=true />
+  	        readonly=false />
   </div>
 
   <div class="name">
   	
   </div>
   <div class="hero">      
-  	<img src="images/hero.png"  id="hero-image" alt="warrior" width="50" height="100"></div>	
+  	<img src="images/simon.png"  id="hero-image" alt="warrior" width="50" height="100"></div>	
 
 </div>
 </body>

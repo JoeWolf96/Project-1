@@ -1,6 +1,7 @@
 html{
 
 	background : url(images/page-background.jpg);
+ 
 	background-color:black;
 	background-repeat: no-repeat;
 	background-position:absolute;
@@ -22,59 +23,75 @@ h1{
   grid-template-areas:
     ". name ."
     "log-area game-area inventory"
-    ". start- .";
+    "movement start- fight";
 }
 
 .dungeon {
     grid-area: game-area;
-    
     display:flex;
     flex-wrap:wrap-reverse;
     justify-content: center;
-    color:white;
+    position:relative;
+    
  }
-
 
  .room{
  	background: url(images/thumb.jpg);
-    flex: 0 30% ;
+ 	    flex: 0 30%;
     height: 100px;
-    margin-bottom:0px
+    margin-bottom: 0px
+ 	
 
  }
-
- 
-
-
-.log-area { 
-	grid-area: log-area; 
+.button-group{
+  grid-area: movement;
 
 }
 
- #log{
- 	height:100%;
- 	background-color:gray;
- 	text-align:bottom;
- 	
- }
+.fight-buttons{
+  grid-area:fight;
+  
+}
+
+.log_area { 
+	grid-area: log-area; 
+}
+
+#log{
+  grid-area: log-area;
+  background-color: grey;
+  height: 50%
+}
 
 .inventory { 
 	grid-area: inventory;
+
  }
 
-#Inventory{
-	height:100%;
- 	background-color:gray;
- 	text-align:bottom;
-}
+ #inventory{
+  background-color: gray;
+  overflow:auto ;
+  height:50%;
+
+
+ }
+
 .name {
     grid-area: name;
-    background:url(images/text-background.jpg);
 
 }
+
 .start- { 
 	grid-area: start-; 
-	color:white;
+
+}
+
+.hero{
+  grid-area:start-;
+  justify-content: center;
+
+  
+ 
 }
 
 

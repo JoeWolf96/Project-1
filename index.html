@@ -20,13 +20,13 @@
 
   <div class="dungeon">
   	
-  	<div class="room room1">1</div>
-  	<div class="room room2">2</div>
-  	<div class="room room3">3</div>
-  	<div class="room room4">4</div>
-  	<div class="room room5">5</div>
-  	<div class="room room6">6</div>
-  	<div class="room room7">7</div>
+  	<div class="room" id= "room1">1</div>
+  	<div class="room" id="room2">2</div>
+  	<div class="room" id="room3">3</div>
+  	<div class="room" id="room4">4</div>
+  	<div class="room" id="room5">5</div>
+  	<div class="room" id="room6">6</div>
+  	<div class="room" id="room7">7</div>
 
   </div>
 
@@ -47,6 +47,12 @@
   <button class="button-down"onclick="belmont.moveDown()">down</button>
 </div>  
 
+
+<div class="fight-buttons">
+  <button class="fight" onclick="belmont.fight()"> FIGHT </button>
+  <button class="potion" onclick="belmont.usePotion()"> Use Potion</button> 
+  <button class="holy-water" onclick="belmont.useHolyWater()">Use Holy Water</button>
+</div>  
 
 
   <div class="inventory">

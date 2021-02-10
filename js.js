@@ -7,7 +7,7 @@
 			name:"whip",
 			damage:5
 		}
-	    this.location= $(".room room1")
+	    this.location= document.getElementsByClassName("room room1")
 	}
 
 	announceHealth() {
@@ -26,6 +26,7 @@
     
     }
     moveUp() {
+    	console.log("button works")
   //   	handleClick: function(e) {
 		// console.log(this)
 	 //         }
@@ -81,7 +82,7 @@ const belmont = new Hero();
 console.log(belmont)
 belmont.announceHealth();
 belmont.raiseWeapon()
-belmont.moveUp()
+
 window.onload = function(){
         const inventoryBox = document.getElementById("inventory");
         const inventory= new Inventory()

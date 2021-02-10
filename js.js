@@ -7,7 +7,7 @@
 			name:"whip",
 			damage:5
 		}
-	    this.location= document.getElementsByClassName("room room1")
+	    this.location= document.getElementById("#room1")
 	}
 
 	announceHealth() {
@@ -26,22 +26,43 @@
     
     }
     moveUp() {
-    	console.log("button works")
-  //   	handleClick: function(e) {
-		// console.log(this)
-	 //         }
-          
-  //           const button = $(".button-up")
-  //           button.addEventListener("click", e => moveUp.handleClick(e))
+    	console.log("button up working")
+    	
+    let position = $("#room1").offset()
 
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    this.location=position
+        if(position== location) {
+    	position= $("#room4").offset();
+           $("#hero-image").css({ position:'absolute', top:position.top, left: position.left})
+                  }
+ 
     }
-     announceLocation(){
-     	console.log(this.location)
+     moveRight(){
+     	console.log("button right working")
+        let position = $("#room2").offset()
+
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+
      }
  }
 
 
  //need a room class
+ class Room{
+ 	constructor(){
+ 		this.room1=$("#room1")
+ 		this.room2=$("#room2")
+ 		this.room3=$("#room3")
+ 		this.room4=$("#room4")
+ 		this.room5=$("#room5")
+ 		this.room6=$("#room6")
+ 		this.room7=$("#room7")
+
+ 	}
+ }
+const map = new Room
+console.log(map)
 
 
 

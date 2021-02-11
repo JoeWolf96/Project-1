@@ -50,32 +50,18 @@ h1{
 
 .fight-buttons{
   grid-area:fight;
-  
+
 }
 
-.log_area { 
-	grid-area: log-area; 
+.inventory{
+  grid-area: inventory;
+  color:red;
 }
 
-#log{
+.log{
   grid-area: log-area;
-  background-color: grey;
-  height: 50%
+  color:red;
 }
-
-.inventory { 
-	grid-area: inventory;
-
- }
-
- #inventory{
-  background-color: gray;
-  overflow:auto ;
-  height:50%;
-
-
- }
-
 .name {
     grid-area: name;
 
@@ -86,12 +72,13 @@ h1{
 
 }
 
-.hero{
+#hero-image{
   grid-area:start-;
   justify-content: center;
 
-  
- 
+}
+.enemy{
+  visibility:hidden;
 }
 
 

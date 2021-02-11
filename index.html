@@ -11,7 +11,7 @@
 
 <body>
 
-<h1>Enter The Dungeon</h1>
+<h1>The Last Stand</h1>
 
 <script type=" text/javascript" src="js.js"></script>
 
@@ -20,31 +20,22 @@
 
   <div class="dungeon">
   	
-  	<div class="room" id= "room1">1</div>
-  	<div class="room" id="room2">2</div>
-  	<div class="room" id="room3">3</div>
-  	<div class="room" id="room4">4</div>
-  	<div class="room" id="room5">5</div>
-  	<div class="room" id="room6">6</div>
-  	<div class="room" id="room7">7</div>
-
+  	<div class="room" id="room1" ondragover="onDragOver(event);" ondrop="onDrop1(event);">1</div>
+  	<div class="room" id="room2" ondragover="onDragOver(event);" ondrop="onDrop2(event);">2</div>
+  	<div class="room" id="room3" ondragover="onDragOver(event);" ondrop="onDrop3(event);">3</div>
+  	<div class="room" id="room4" ondragover="onDragOver(event);" ondrop="onDrop4(event);">4</div>
+  	<div class="room" id="room5" ondragover="onDragOver(event);" ondrop="onDrop5(event);">5</div>
+  	<div class="room" id="room6" ondragover="onDragOver(event);" ondrop="onDrop6(event);">6</div>
+  	<div class="room" id="room7" ondragover="onDragOver(event);" ondrop="onDrop7(event);">7</div>
+      
   </div>
 
-
-  <div class="log_area">
-
-  	 <input type="text"
-  	        id   ="log"
-  	        value="testing"
-  	        readonly=true />
-  </div>
+<p class ="inventory"> Inventory </p>
+<p class = "log">Events</p> 
 
 
-<div class="button-group">
-  <button class="button-left"onclick="belmont.moveLeft()" >left</button>
-  <button class="button-up" onclick="belmont.moveUp()">up</button>
-  <button class="button-right" onclick="belmont.moveRight()">right</button>
-  <button class="button-down"onclick="belmont.moveDown()">down</button>
+
+
 </div>  
 
 
@@ -54,20 +45,10 @@
   <button class="holy-water" onclick="belmont.useHolyWater()">Use Holy Water</button>
 </div>  
 
+<div class="hero">      
+    <img src="images/simon.png"  id="hero-image" alt="warrior" width="50" height="100" draggable:true></div>
+<div class="enemy">
+  <img src="images/skeleton.png"  id="skeleton" alt="boney" width="50" height="100"></div> 
 
-  <div class="inventory">
-  	 <input type="text"
-  	        id   ="inventory"
-  	        value="inventory"
-  	        readonly=false />
-  </div>
-
-  <div class="name">
-  	
-  </div>
-  <div class="hero">      
-  	<img src="images/simon.png"  id="hero-image" alt="warrior" width="50" height="100"></div>	
-
-</div>
 </body>
 </html>

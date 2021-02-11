@@ -8,6 +8,7 @@
 			damage:5
 		}
 	    this.location= document.getElementById("#room1")
+	    this.key=false
 	}
 
 	announceHealth() {
@@ -21,57 +22,24 @@
 		
     }
      fight() {
-
-
+    }
     
-    }
-    moveUp() {
-    	console.log("button up working")
-    	
-    let position = $("#room1").offset()
-
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
-    this.location=position
-        if(position== location) {
-    	position= $("#room4").offset();
-           $("#hero-image").css({ position:'absolute', top:position.top, left: position.left})
-                  }
  
-    }
-     moveRight(){
-     	console.log("button right working")
-        let position = $("#room2").offset()
-
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
-
-     }
  }
 
 
  //need a room class
- class Room{
- 	constructor(){
- 		this.room1=$("#room1")
- 		this.room2=$("#room2")
- 		this.room3=$("#room3")
- 		this.room4=$("#room4")
- 		this.room5=$("#room5")
- 		this.room6=$("#room6")
- 		this.room7=$("#room7")
 
- 	}
- }
-const map = new Room
-console.log(map)
 
 
 
  //need an enemy class
 class Monster{
-	constructor(name,health,damage){
+	constructor(name,health,damage,position){
 		this.name=name ;
 		this.health=health ;
 		this.damage=damage 
+		this.position=$("#room1")
 
 	}
 }
@@ -83,17 +51,6 @@ console.log(zombie)
 
 //inventory
 
-class Inventory{
-	constructor(){
-		this.healthPotion="Health Potion"
-		this.cross="Cross"
-	}
-	heal(){
-
-	}
-
-}
-
 
 //create hero
 
@@ -104,29 +61,99 @@ console.log(belmont)
 belmont.announceHealth();
 belmont.raiseWeapon()
 
-window.onload = function(){
-        const inventoryBox = document.getElementById("inventory");
-        const inventory= new Inventory()
-       
 
-       inventoryBox.value=inventory
-          }
 
 
 //need a final boss
 class FinalBoss{
-	constructor(){
+	constructor(name){
+        this.name=name
 		this.health=100
 		this.damage=10
 	}
+	fight(){
 
-
+	}
 }
 
+const Dracula = new FinalBoss("Dracula")
+console.log(Dracula)
 
 //log
+//found this on stack overflow https://stackoverflow.com/questions/20256760/javascript-console-log-to-html
 
+ // !function(o){console.old=console.log,console.log=function(){var n,e,t="";for(e=0;e<arguments.length;e++)t+='<span class="log-'+typeof(n=arguments[e])+'">',"object"==typeof n&&"object"==typeof JSON&&"function"==typeof JSON.stringify?t+=JSON.stringify(n):t+=n,t+="</span>&nbsp;";o.innerHTML+=t+"<br>",console.old.apply(void 0,arguments)}}
+ //    ($("#log"));
 //movement
+
+
+
+function onDragStart(event) {
+  
+    event.dataTransfer
+    event.setData('text/plain', event.target.id);
+   
+}
+
+function onDragOver(event) {
+  event.preventDefault();
+}
+
+function onDrop1(event){
+	 event.preventDefault()
+  
+    let position = $("#room1").offset()
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+  
+}
+function onDrop2(event){
+	 event.preventDefault()
+  
+    let position = $("#room2").offset()
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+  
+}
+function onDrop3(event){
+	 event.preventDefault()
+  
+    let position = $("#room3").offset()
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+  
+}
+function onDrop4(event){
+	 event.preventDefault()
+  
+    let position = $("#room4").offset()
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+  
+}
+function onDrop5(event){
+	 event.preventDefault()
+  
+    let position = $("#room5").offset()
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+  
+}
+function onDrop6(event){
+	 event.preventDefault()
+  
+    let position = $("#room6").offset()
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+  
+}
+function onDrop7(event){
+	 event.preventDefault()
+	 if(belmont.this.key == true){
+  
+    let position = $("#room7").offset()
+    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+     }
+     else {
+     	console.log( " the room is locked! you need a key to access it ")
+     }
+  
+}
+
 
 
 

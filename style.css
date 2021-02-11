@@ -88,6 +88,11 @@ h1{
   grid-area:Bag;
   color:white;
   }
+.start{
+  grid-area:movement;
+}
 
-
+.pause{
+  grid-area:movement;
+}
 

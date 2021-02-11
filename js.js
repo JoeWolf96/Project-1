@@ -1,3 +1,9 @@
+const music = document.getElementById("myAudio"); 
+const isPlaying =false
+
+function togglePlay() {
+return myAudio.paused ? myAudio.play() : myAudio.pause();
+};//grabbed from stack overflow after i set it up to make it clean
 //need a hero
  class Hero {
 	constructor(){

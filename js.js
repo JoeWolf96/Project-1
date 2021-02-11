@@ -21,8 +21,22 @@
 		console.log(this.name+" raises his "+this.weapon.name);
 		
     }
-     fight() {
+     fightBegins() {
+     	const message="a Skeleton attacks you! press one of the buttons to decide what to do"
+     	const eventLog=$(".log")
+     	eventLog.append(message)
     }
+    attack(){ 
+    	const message=" ,you attack the skeleton with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
+     	const eventLog=$(".log")
+     	eventLog.append(message)
+    }
+    usePotion(){
+    	const message=", you use a potion and restore your HP for 50"
+     	const eventLog=$(".log")
+     	eventLog.append(message)
+    }
+
     
  
  }
@@ -50,7 +64,14 @@ const zombie = new Monster("zombie",15,2)
 console.log(zombie)
 
 //inventory
-
+const inventory={
+	key:false ,
+	HolyWater:80 ,
+	Potion:50 ,
+    
+}
+ const items=$(".inventory")
+ items.append(inventory)
 
 //create hero
 
@@ -79,11 +100,8 @@ class FinalBoss{
 const Dracula = new FinalBoss("Dracula")
 console.log(Dracula)
 
-//log
-//found this on stack overflow https://stackoverflow.com/questions/20256760/javascript-console-log-to-html
 
- // !function(o){console.old=console.log,console.log=function(){var n,e,t="";for(e=0;e<arguments.length;e++)t+='<span class="log-'+typeof(n=arguments[e])+'">',"object"==typeof n&&"object"==typeof JSON&&"function"==typeof JSON.stringify?t+=JSON.stringify(n):t+=n,t+="</span>&nbsp;";o.innerHTML+=t+"<br>",console.old.apply(void 0,arguments)}}
- //    ($("#log"));
+
 //movement
 
 
@@ -101,16 +119,17 @@ function onDragOver(event) {
 
 function onDrop1(event){
 	 event.preventDefault()
-  
+	 belmont.fightBegins()  
     let position = $("#room1").offset()
     $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
-  
+    $("#skeleton").css({ visibility: 'visibile',position:'absolute', top:position.top, left: position.left});
 }
 function onDrop2(event){
 	 event.preventDefault()
   
     let position = $("#room2").offset()
     $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    
   
 }
 function onDrop3(event){
@@ -143,13 +162,15 @@ function onDrop6(event){
 }
 function onDrop7(event){
 	 event.preventDefault()
-	 if(belmont.this.key == true){
+	 if(inventory.key == true){
   
     let position = $("#room7").offset()
     $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
      }
      else {
-     	console.log( " the room is locked! you need a key to access it ")
+     	const message="The door is locked! You ll need a key to access this"
+     	const eventLog=$(".log")
+     	eventLog.append(message)
      }
   
 }

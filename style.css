@@ -18,10 +18,10 @@ h1{
 
 .grid-container {
   display: grid;
-  grid-template-columns: 0.6fr 2.1fr 0.6fr;
+  grid-template-columns: 0.6fr 5.1fr 0.6fr;
   grid-template-rows: 0.4fr 2.3fr 0.3fr;
   grid-template-areas:
-    ". name ."
+    "log name Bag"
     "log-area game-area inventory"
     "movement start- fight";
 }
@@ -78,8 +78,16 @@ h1{
 
 }
 .enemy{
-  visibility:hidden;
+ visibility:hidden;
 }
+.eventLog{
+  grid-area:log;
+  color:white;
+}
+.bag{
+  grid-area:Bag;
+  color:white;
+  }
 
 
 

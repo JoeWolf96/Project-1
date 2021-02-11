@@ -15,7 +15,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 			name:"whip",
 			damage:5
 		}
-	    this.location= document.getElementById("#room1")
+	   
 
 	}
 
@@ -32,10 +32,15 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 		console.log(this.name+" raises his "+this.weapon.name);
 		
     }
-     fightBegins() {
-     	const message="a Skeleton attacks you! press one of the buttons to decide what to do"
+     fightBegins(Monster , room) {
+
+     	const message="a "+ Monster.name +" attacks you! press one of the buttons to decide what to do"
      	const eventLog=$(".log")
      	eventLog.append(message)
+
+
+     	
+
     }
     attack(Monster){ 
     	const message=" ,you attack the skeleton with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
@@ -45,25 +50,17 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
      	let  dmg = this.weapon.damage ;
      	Monster.health -= dmg
      	console.log(Monster.health)
-
-     	if(Monster.health <= 0){
+        
+        if (Monster.health == 0){
 
         const message=" you defeated your enemy"
      	const eventLog=$(".log");
      	eventLog.append(message);
 
      	$("#skeleton").remove()
+     	$(".fight-buttons").remove()
 
      	}
-
-
-
-
-
-
-
-
-
 
     }
     usePotion(){
@@ -87,11 +84,10 @@ belmont.raiseWeapon()
 
  //need an enemy class
 class Monster{
-	constructor(name,health,damage,position){
+	constructor(name,health,damage){
 		this.name=name ;
 		this.health=health ;
 		this.damage=damage 
-		this.position=$("#room1")
 
 	}
 	announceHealth(){
@@ -102,7 +98,7 @@ class Monster{
 
 
 
-const skeleton= new Monster("skeleton",10,1)
+const skeleton= new Monster("skeleton",10,2)
 console.log(skeleton)
 skeleton.announceHealth();
 
@@ -157,16 +153,17 @@ function onDragOver(event) {
 
 function onDrop1(event){
 	 event.preventDefault()
-	 belmont.fightBegins()  
+	 belmont.fightBegins(skeleton , $("#room2"))  
     let position = $("#room1")
     
     position.append($("#hero-image"))
 
     position.append($("#skeleton"))
-    $("#skeleton").css("visibility","visibile ")
-
-
+    $("#skeleton").css("visibility","visib le ")
+    $(".fight-buttons").css("visibility","visible")
 }
+
+
 function onDrop2(event){
 	 event.preventDefault()
   
@@ -175,6 +172,9 @@ function onDrop2(event){
     
   
 }
+
+
+
 function onDrop3(event){
 	 event.preventDefault()
   
@@ -182,6 +182,8 @@ function onDrop3(event){
     position.append($("#hero-image"))
   
 }
+
+
 function onDrop4(event){
 	 event.preventDefault()
   
@@ -189,6 +191,8 @@ function onDrop4(event){
     position.append($("#hero-image"))
   
 }
+
+
 function onDrop5(event){
 	 event.preventDefault()
   
@@ -196,6 +200,8 @@ function onDrop5(event){
     position.append($("#hero-image"))
   
 }
+
+
 function onDrop6(event){
 	 event.preventDefault()
   
@@ -203,6 +209,8 @@ function onDrop6(event){
     position.append($("#hero-image"))
   
 }
+
+
 function onDrop7(event){
 	 event.preventDefault()
 	 if(inventory.key == true){

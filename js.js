@@ -1,3 +1,5 @@
+//add music to the page cause why not
+
 const music = document.getElementById("myAudio"); 
 const isPlaying =false
 
@@ -14,12 +16,15 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 			damage:5
 		}
 	    this.location= document.getElementById("#room1")
-	    this.key=false
+
 	}
 
 	announceHealth() {
 
-	console.log(this.health)
+	    const message="HP:"+this.health
+	    console.log(message)
+        const health=$(".HP")
+        health.append(message)
     
 	}
 	raiseWeapon() {
@@ -32,10 +37,34 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
      	const eventLog=$(".log")
      	eventLog.append(message)
     }
-    attack(){ 
+    attack(Monster){ 
     	const message=" ,you attack the skeleton with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
-     	const eventLog=$(".log")
-     	eventLog.append(message)
+     	const eventLog=$(".log");
+     	eventLog.append(message);
+
+     	let  dmg = this.weapon.damage ;
+     	Monster.health -= dmg
+     	console.log(Monster.health)
+
+     	if(Monster.health <= 0){
+
+        const message=" you defeated your enemy"
+     	const eventLog=$(".log");
+     	eventLog.append(message);
+
+     	$("#skeleton").remove()
+
+     	}
+
+
+
+
+
+
+
+
+
+
     }
     usePotion(){
     	const message=", you use a potion and restore your HP for 50"
@@ -46,11 +75,14 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
     
  
  }
+//create hero
+
+const belmont = new Hero();
 
 
- //need a room class
-
-
+console.log(belmont)
+belmont.announceHealth();
+belmont.raiseWeapon()
 
 
  //need an enemy class
@@ -62,12 +94,21 @@ class Monster{
 		this.position=$("#room1")
 
 	}
+	announceHealth(){
+		console.log(this.health)
+	}
 }
+
+
+
+
 const skeleton= new Monster("skeleton",10,1)
 console.log(skeleton)
+skeleton.announceHealth();
 
-const zombie = new Monster("zombie",15,2)
-console.log(zombie)
+
+
+
 
 //inventory
 const inventory={
@@ -76,17 +117,8 @@ const inventory={
 	Potion:50 ,
     
 }
- const items=$(".inventory")
- items.append(inventory)
-
-//create hero
-
-const belmont = new Hero();
 
 
-console.log(belmont)
-belmont.announceHealth();
-belmont.raiseWeapon()
 
 
 
@@ -126,52 +158,57 @@ function onDragOver(event) {
 function onDrop1(event){
 	 event.preventDefault()
 	 belmont.fightBegins()  
-    let position = $("#room1").offset()
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
-    $("#skeleton").css({ visibility: 'visibile',position:'absolute', top:position.top, left: position.left});
+    let position = $("#room1")
+    
+    position.append($("#hero-image"))
+
+    position.append($("#skeleton"))
+    $("#skeleton").css("visibility","visibile ")
+
+
 }
 function onDrop2(event){
 	 event.preventDefault()
   
-    let position = $("#room2").offset()
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    let position = $("#room2")
+    position.append($("#hero-image"))
     
   
 }
 function onDrop3(event){
 	 event.preventDefault()
   
-    let position = $("#room3").offset()
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    let position = $("#room3")
+    position.append($("#hero-image"))
   
 }
 function onDrop4(event){
 	 event.preventDefault()
   
-    let position = $("#room4").offset()
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    let position = $("#room4")
+    position.append($("#hero-image"))
   
 }
 function onDrop5(event){
 	 event.preventDefault()
   
-    let position = $("#room5").offset()
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    let position = $("#room5")
+    position.append($("#hero-image"))
   
 }
 function onDrop6(event){
 	 event.preventDefault()
   
-    let position = $("#room6").offset()
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    let position = $("#room6")
+    position.append($("#hero-image"))
   
 }
 function onDrop7(event){
 	 event.preventDefault()
 	 if(inventory.key == true){
   
-    let position = $("#room7").offset()
-    $("#hero-image").css({ position:'absolute', top:position.top, left: position.left});
+    let position = $("#room7")
+    position.append($("#hero-image"))
      }
      else {
      	const message="The door is locked! You ll need a key to access this"

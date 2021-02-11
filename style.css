@@ -21,9 +21,9 @@ h1{
   grid-template-columns: 0.6fr 5.1fr 0.6fr;
   grid-template-rows: 0.4fr 2.3fr 0.3fr;
   grid-template-areas:
-    "log name Bag"
+    "log Health Bag"
     "log-area game-area inventory"
-    "movement start- fight";
+    "movement start .";
 }
 
 .dungeon {
@@ -49,36 +49,46 @@ h1{
 }
 
 .fight-buttons{
-  grid-area:fight;
+  grid-area: pipus;
 
 }
 
 .inventory{
   grid-area: inventory;
   color:red;
+  overflow-y:auto;
+  max-width: 200px;
+  max-height: 90%;
+  height: 300px;
+  width: 300px;
 }
 
 .log{
   grid-area: log-area;
   color:red;
+  overflow-y:auto;
+  max-width: 200px;
+  max-height: 90%;
+  height: 300px;
+  width: 300px;
 }
 .name {
     grid-area: name;
 
 }
 
-.start- { 
-	grid-area: start-; 
+.start { 
+	grid-area: start; 
 
 }
 
 #hero-image{
-  grid-area:start-;
+  grid-area:start;
   justify-content: center;
 
 }
 .enemy{
- visibility:hidden;
+ visibility: hidden;
 }
 .eventLog{
   grid-area:log;
@@ -88,11 +98,13 @@ h1{
   grid-area:Bag;
   color:white;
   }
-.start{
+.startAudio{
   grid-area:movement;
+}
+.HP{
+  grid-area:Health;
+  color:red;
 }
 
-.pause{
-  grid-area:movement;
-}
+
 

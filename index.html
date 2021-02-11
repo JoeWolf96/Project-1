@@ -14,9 +14,9 @@
 
 <h1>The Last Stand</h1>
 <audio id="myAudio">
-  <source src="background.mp3" type="audio/mp3">
+  <source src="background.mp3" type="audio/mp3" loop=>
   </audio>
-  <button class="start" onclick="togglePlay()" type="button">Play Audio</button>
+  <button class="startAudio" onclick="togglePlay()" type="button">Play Audio</button>
 
 <script type=" text/javascript" src="js.js"></script>
 
@@ -36,8 +36,9 @@
   </div>
 <h2 class="eventLog">Events</h2>
 <h2 class= "bag">Inventory</h2>
-<p class ="inventory"></p>
-<p class = "log"></p> 
+<div class ="inventory"></div>
+<div class = "log"></div> 
+<div class ="HP"></div>
 
 
 
@@ -46,7 +47,7 @@
 
 
 <div class="fight-buttons">
-  <button class="fight" onclick="belmont.attack()"> FIGHT </button>
+  <button class="fight" onclick="belmont.attack(skeleton)"> FIGHT </button>
   <button class="potion" onclick="belmont.usePotion()"> Use Potion</button> 
   <button class="holy-water" onclick="belmont.useHolyWater()">Use Holy Water</button>
 </div>  

@@ -24,7 +24,10 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         this.inventory={
             potions: 1 ,
             holy_waters: 1,
+            
         }
+        this.key=false
+
 
     }
      fightBegins(Monster , room) {
@@ -67,7 +70,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
        //end of the fight ui disappears
         $("#skeleton").css("visibility","hidden")
-        $("#slogra").css("visibility","hidden")
+        
         
         $(".fight-buttons").css("visibility","hidden")
         }
@@ -110,6 +113,46 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
              }
     
     }
+    attackSlogra(Monster)
+    {
+        const message=" you attack "+Monster.name+" with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
+        const eventLog=$(".log");
+        eventLog.append(message);
+
+        let  dmg = this.weapon.damage ;
+        Monster.health -= dmg
+        console.log(Monster.health)
+       //enemy attacks
+        this.health -= Monster.damage
+        console.log(this.health)
+
+
+       // update hp 
+       
+       let hp= $(".health")
+         hp.value -= this.health;
+         
+         $(".health").animate({
+             width: this.health + "%"
+                  },1000);
+
+        //condition to stop fight
+        if (Monster.health == 0){
+
+        const message=" you defeated "+ Monster.name
+        const eventLog=$(".log");
+        eventLog.append(message);
+
+       //end of the fight ui disappear
+        $("#slogra").css("visibility","hidden")
+        
+        $(".fight-buttons").css("visibility","hidden")
+        }
+          //key is now true
+          this.key= true
+         
+    }
+
 
     usePotion(Monster){
         //message
@@ -211,7 +254,6 @@ const dracula = new Monster("Dracula",100,15)
 //key 
 
 
-const key= true
 
 //movement
 
@@ -307,7 +349,7 @@ function onDrop6(event){
 
     $("#slogra").css("visibility","visible ")
     $(".fight-buttons").css("visibility","visible")
-    document.getElementById("fight").setAttribute("onclick","belmont.attack(slogra)") 
+    document.getElementById("fight").setAttribute("onclick","belmont.attackSlogra(slogra)") 
   
 }
 
@@ -315,7 +357,7 @@ function onDrop6(event){
 function onDrop7(event){
 
      event.preventDefault()
-     if(key == true){
+     if(belmont.key == true){
   
     let position = $("#room7")
     position.append($("#hero-image"))

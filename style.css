@@ -21,9 +21,9 @@ h1{
   grid-template-columns: 0.6fr 5.1fr 0.6fr;
   grid-template-rows: 0.4fr 2.3fr 0.3fr;
   grid-template-areas:
-    "log Health Bag"
-    "log-area game-area inventory"
-    "movement start .";
+    "log instructions Bag"
+    "log-area game-area ."
+    "movement start Health";
 }
 
 .dungeon {
@@ -37,6 +37,7 @@ h1{
 
  .room{
  	background: url(images/thumb.jpg);
+  color:white;
  	    flex: 0 30%;
     height: 100px;
     margin-bottom: 0px
@@ -49,19 +50,12 @@ h1{
 }
 
 .fight-buttons{
-  grid-area: pipus;
+  grid-area: HP;
+  visibility: hidden;
 
 }
 
-.inventory{
-  grid-area: inventory;
-  color:red;
-  overflow-y:auto;
-  max-width: 200px;
-  max-height: 90%;
-  height: 300px;
-  width: 300px;
-}
+
 
 .log{
   grid-area: log-area;
@@ -101,8 +95,15 @@ h1{
 .startAudio{
   grid-area:movement;
 }
-.HP{
+
+.health{
   grid-area:Health;
+  
+
+}
+
+.instructions{
+  grid-area: instructions;
   color:red;
 }
 

@@ -25,37 +25,52 @@
 
   <div class="dungeon">
   	
-  	<div class="room" id="room1" ondragover="onDragOver(event);" ondrop="onDrop1(event);">1</div>
-  	<div class="room" id="room2" ondragover="onDragOver(event);" ondrop="onDrop2(event);">2</div>
-  	<div class="room" id="room3" ondragover="onDragOver(event);" ondrop="onDrop3(event);">3</div>
-  	<div class="room" id="room4" ondragover="onDragOver(event);" ondrop="onDrop4(event);">4</div>
-  	<div class="room" id="room5" ondragover="onDragOver(event);" ondrop="onDrop5(event);">5</div>
-  	<div class="room" id="room6" ondragover="onDragOver(event);" ondrop="onDrop6(event);">6</div>
-  	<div class="room" id="room7" ondragover="onDragOver(event);" ondrop="onDrop7(event);">7</div>
+  	<div class="room" id="room1" ondragover="onDragOver(event);" ondrop="onDrop1(event);">room 1</div>
+  	<div class="room" id="room2" ondragover="onDragOver(event);" ondrop="onDrop2(event);">room 2</div>
+  	<div class="room" id="room3" ondragover="onDragOver(event);" ondrop="onDrop3(event);">room 3</div>
+  	<div class="room" id="room4" ondragover="onDragOver(event);" ondrop="onDrop4(event);">room 4</div>
+  	<div class="room" id="room5" ondragover="onDragOver(event);" ondrop="onDrop5(event);">room 5</div>
+  	<div class="room" id="room6" ondragover="onDragOver(event);" ondrop="onDrop6(event);">room 6</div>
+  	<div class="room" id="room7" ondragover="onDragOver(event);" ondrop="onDrop7(event);">Boss Room</div>
       
   </div>
+
+    <p class= "instructions">Welcome adventurer, this is the last part of your Quest, explore the Rooms by dragging your character on them and fight! you will have to find a key before facing the Boss, but watch out! the blue bar is your Health! if it goes to 0 you will lose. To help you out you have One Potion to use to fully restore them, go and slay!</p>
 <h2 class="eventLog">Events</h2>
-<h2 class= "bag">Inventory</h2>
-<div class ="inventory"></div>
-<div class = "log"></div> 
-<div class ="HP"></div>
+<h2 class= "bag"></h2>
 
+   <div class = "logBox">
 
+     <ul class="log"></ul>
 
+   </div> 
+
+    <progress class="health" value="100" max="100">HP</progress>
 
 </div>  
 
+<div class="potions">
+     <img src="images/potion.png" width="50" height="100" >
+</div>
 
 <div class="fight-buttons">
-  <button class="fight" onclick="belmont.attack(skeleton)"> FIGHT </button>
-  <button class="potion" onclick="belmont.usePotion()"> Use Potion</button> 
-  <button class="holy-water" onclick="belmont.useHolyWater()">Use Holy Water</button>
+    <button id="fight" onclick="belmont.attack()"> attack </button>
+    <button class="potion" onclick="belmont.usePotion()"> Use Potion</button> 
+    <button class="holy-water" onclick="belmont.useHolyWater()">Use Holy Water</button>
 </div>  
 
-<div class="hero">      
-    <img src="images/simon.png"  id="hero-image" alt="warrior" width="50" height="100" draggable:true></div>
+<div class="hero">   
+
+        <img src="images/simon.png"  id="hero-image" alt="warrior" width="50" height="100" draggable:true>
+  </div>
+
 <div class="enemy">
-  <img src="images/skeleton.png"  id="skeleton" alt="boney" width="50" height="100"></div> 
+
+  <img src="images/skeleton.png"  id="skeleton"  width="50" height="100">
+  <img src="images/slogra.gif" id="slogra" width="50" height="100">
+  <img src="images/dracula.png" id="dracula" width="50" height="100">
+
+</div> 
 
 </body>
 </html>

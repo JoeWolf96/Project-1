@@ -5,68 +5,120 @@ const isPlaying =false
 
 function togglePlay() {
 return myAudio.paused ? myAudio.play() : myAudio.pause();
-};//grabbed from stack overflow after i set it up to make it clean
+};
+//grabbed from stack overflow after i set it up to make it clean
+
+
+
+
+
 //need a hero
  class Hero {
-	constructor(){
-		this.name="Belmont";
-		this.health=100;
-		this.weapon={
-			name:"whip",
-			damage:5
-		}
-	   
+    constructor(){
+        this.name="Belmont";
+        this.health=100;
+        this.weapon={
+            name:"whip",
+            damage:5
+        }
+        this.inventory={
+            potions: 1 ,
+            holy_waters: 1,
+        }
 
-	}
-
-	announceHealth() {
-
-	    const message="HP:"+this.health
-	    console.log(message)
-        const health=$(".HP")
-        health.append(message)
-    
-	}
-	raiseWeapon() {
-
-		console.log(this.name+" raises his "+this.weapon.name);
-		
     }
      fightBegins(Monster , room) {
 
-     	const message="a "+ Monster.name +" attacks you! press one of the buttons to decide what to do"
-     	const eventLog=$(".log")
-     	eventLog.append(message)
+        const message="a "+ Monster.name +" attacks you! press one of the buttons to decide what to do"
+        const eventLog=$(".log")
 
-
-     	
+        eventLog.append(message)
+        console.log(eventLog.html())
 
     }
     attack(Monster){ 
-    	const message=" ,you attack the skeleton with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
-     	const eventLog=$(".log");
-     	eventLog.append(message);
+        const message=" ,you attack "+Monster.name+" with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
+        const eventLog=$(".log");
+        eventLog.append(message);
 
-     	let  dmg = this.weapon.damage ;
-     	Monster.health -= dmg
-     	console.log(Monster.health)
-        
+        let  dmg = this.weapon.damage ;
+        Monster.health -= dmg
+        console.log(Monster.health)
+       //enemy attacks
+        this.health -= Monster.damage
+        console.log(this.health)
+
+
+       // update hp 
+       
+       let hp= $(".health")
+         hp.value -= this.health;
+         
+         $(".health").animate({
+             width: this.health + "%"
+                  },1000);
+
+        //condition to stop fight
         if (Monster.health == 0){
 
-        const message=" you defeated your enemy"
-     	const eventLog=$(".log");
-     	eventLog.append(message);
+        const message=" you defeated "+ Monster.name
+        const eventLog=$(".log");
+        eventLog.append(message);
 
-     	$("#skeleton").remove()
-     	$(".fight-buttons").remove()
-
-     	}
+       //end of the fight ui disappears
+        $("#skeleton").css("visibility","hidden")
+        $("#slogra").css("visibility","hidden")
+        
+        $(".fight-buttons").css("visibility","hidden")
+        }
 
     }
-    usePotion(){
-    	const message=", you use a potion and restore your HP for 50"
-     	const eventLog=$(".log")
-     	eventLog.append(message)
+    usePotion(Monster){
+        //message
+        const message=" you use a potion and restore your HP fully"
+        const eventLog=$(".log")
+        eventLog.append(message)
+
+
+        //actual potion functionality
+        this.health = 100
+        this.inventory.potions -= 1
+       
+        let element = $(".potions")
+        element.remove()
+
+        if(this.inventory.potions== 0){
+            const potionButton = $(".potion")
+            potionButton.remove()
+        }
+
+        
+
+         //enemy still attacks
+         this.health -= Monster.damage
+
+         //hp updates
+         let hp= $(".health")
+         hp.value -= this.health;
+         
+         $(".health").animate({
+             width: this.health + "%"
+                  },1000);
+    } 
+    useHolyWater(Monster){
+        const message=" you use a your HOLY WATER and deal 80 dmg"
+        const eventLog=$(".log")
+        eventLog.append(message)
+
+
+
+        let  dmg = 80 ;
+        Monster.health -= dmg
+        console.log(Monster.health)
+
+
+
+
     }
 
     
@@ -78,63 +130,38 @@ const belmont = new Hero();
 
 
 console.log(belmont)
-belmont.announceHealth();
-belmont.raiseWeapon()
+
 
 
  //need an enemy class
 class Monster{
-	constructor(name,health,damage){
-		this.name=name ;
-		this.health=health ;
-		this.damage=damage 
+    constructor(name,health,damage){
+        this.name=name ;
+        this.health=health ;
+        this.damage=damage 
 
-	}
-	announceHealth(){
-		console.log(this.health)
-	}
+    }       
 }
 
-
-
-
-const skeleton= new Monster("skeleton",10,2)
-console.log(skeleton)
-skeleton.announceHealth();
-
-
-
-
-
-//inventory
-const inventory={
-	key:false ,
-	HolyWater:80 ,
-	Potion:50 ,
-    
-}
-
-
+const skeleton1= new Monster("skeleton",10,2)
+const skeleton2= new Monster("skeleton",10,2)
+const skeleton3= new Monster("skeleton",10,2)
+const skeleton4= new Monster("skeleton",10,2)
+const skeleton5= new Monster("skeleton",10,2)
+const slogra= new Monster("slogra",20,10)
 
 
 
 
 //need a final boss
-class FinalBoss{
-	constructor(name){
-        this.name=name
-		this.health=100
-		this.damage=10
-	}
-	fight(){
 
-	}
-}
-
-const Dracula = new FinalBoss("Dracula")
-console.log(Dracula)
+const dracula = new Monster("Dracula",100,15)
 
 
+//key 
+
+
+const key= true
 
 //movement
 
@@ -152,23 +179,31 @@ function onDragOver(event) {
 }
 
 function onDrop1(event){
-	 event.preventDefault()
-	 belmont.fightBegins(skeleton , $("#room2"))  
+    //movement
+    event.preventDefault()
     let position = $("#room1")
-    
     position.append($("#hero-image"))
-
     position.append($("#skeleton"))
-    $("#skeleton").css("visibility","visib le ")
+
+
+    $("#skeleton").css("visibility","visible ")
     $(".fight-buttons").css("visibility","visible")
+    belmont.fightBegins(skeleton , $("#room2"))
+    //change button function
+    document.getElementById("fight").setAttribute("onclick","belmont.attack(skeleton1)") 
 }
 
 
 function onDrop2(event){
-	 event.preventDefault()
+     event.preventDefault()
   
     let position = $("#room2")
+   
     position.append($("#hero-image"))
+    position.append($("#skeleton"))
+     $("#skeleton").css("visibility","visible ")
+    $(".fight-buttons").css("visibility","visible")
+    document.getElementById("fight").setAttribute("onclick","belmont.attack(skeleton2)") 
     
   
 }
@@ -176,52 +211,73 @@ function onDrop2(event){
 
 
 function onDrop3(event){
-	 event.preventDefault()
+     event.preventDefault()
   
     let position = $("#room3")
     position.append($("#hero-image"))
+    position.append($("#skeleton"))
+      $("#skeleton").css("visibility","visible ")
+    $(".fight-buttons").css("visibility","visible")
+    document.getElementById("fight").setAttribute("onclick","belmont.attack(skeleton3)") 
   
 }
 
 
 function onDrop4(event){
-	 event.preventDefault()
+     event.preventDefault()
   
     let position = $("#room4")
+
     position.append($("#hero-image"))
+    position.append($("#skeleton"))
+     $("#skeleton").css("visibility","visible ")
+     $(".fight-buttons").css("visibility","visible")
+     document.getElementById("fight").setAttribute("onclick","belmont.attack(skeleton4)") 
   
 }
 
 
 function onDrop5(event){
-	 event.preventDefault()
+     event.preventDefault()
   
     let position = $("#room5")
     position.append($("#hero-image"))
+    
   
 }
 
 
 function onDrop6(event){
-	 event.preventDefault()
+     event.preventDefault()
   
     let position = $("#room6")
     position.append($("#hero-image"))
+    position.append($("#slogra"))
+
+    $("#slogra").css("visibility","visible ")
+    $(".fight-buttons").css("visibility","visible")
+    document.getElementById("fight").setAttribute("onclick","belmont.attack(slogra)") 
   
 }
 
 
 function onDrop7(event){
-	 event.preventDefault()
-	 if(inventory.key == true){
+
+     event.preventDefault()
+     if(key == true){
   
     let position = $("#room7")
     position.append($("#hero-image"))
+    position.append($("#dracula"))
+    $(".fight-buttons").css("visibility","visible")
+    document.getElementById("fight").setAttribute("onclick","belmont.attack(dracula)") 
+
+
      }
      else {
-     	const message="The door is locked! You ll need a key to access this"
-     	const eventLog=$(".log")
-     	eventLog.append(message)
+        const message="The door is locked! You ll need a key to access this"
+        const eventLog=$(".log")
+        eventLog.append(message)
      }
   
 }

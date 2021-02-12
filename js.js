@@ -105,8 +105,9 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         alert(message)
 
         
-
-         }
+         $(".fight-buttons").off("click");
+         $('#hero-image').attr('draggable', false);
+             }
     
     }
 
@@ -149,6 +150,13 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         let  dmg = 80 ;
         Boss.health -= dmg
         console.log(Boss.health)
+
+         this.inventory.holy_waters -= 1
+ 
+        if(this.inventory.holy_waters== 0){
+            const holyButton = $("#holywater")
+            holyButton.remove()
+           }
 
 
 

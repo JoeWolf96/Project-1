@@ -29,7 +29,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
     }
      fightBegins(Monster , room) {
 
-        const message="a "+ Monster.name +" attacks you! press one of the buttons to decide what to do"
+        const message="an enemy attacks you! press one of the buttons to decide what to do"
         const eventLog=$(".log")
 
         eventLog.append(message)
@@ -37,7 +37,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
     }
     attack(Monster){ 
-        const message=" ,you attack "+Monster.name+" with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
+        const message=" you attack "+Monster.name+" with "+this.weapon.name+" and deal "+this.weapon.damage+" damage!"
         const eventLog=$(".log");
         eventLog.append(message);
 
@@ -73,6 +73,43 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         }
 
     }
+    attackBoss(Boss){
+        const message= "your "+this.weapon.name+" deal "+this.weapon.damage+" damage to "+Boss.name
+        const eventLog=$(".log");
+        eventLog.append(message);
+
+        let  dmg = this.weapon.damage ;
+        Boss.health -= dmg
+        console.log(Boss.health)
+       //enemy attacks
+        this.health -= Boss.damage
+        console.log(this.health)
+
+
+       // update hp 
+       
+       let hp= $(".health")
+         hp.value -= this.health;
+         
+         $(".health").animate({
+             width: this.health + "%"
+                  },1000);
+
+        //condition to stop fight
+        if (Boss.health == 0){
+            $("#dracula").css("visibility","hidden")
+            $(".holy-water").css("visibility","hidden")
+            $(".fight-buttons").css("visibility","hidden")
+
+        const message=" VICTORY  you slayed "+Boss.name
+        alert(message)
+
+        
+
+         }
+    
+    }
+
     usePotion(Monster){
         //message
         const message=" you use a potion and restore your HP fully"
@@ -90,12 +127,9 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         if(this.inventory.potions== 0){
             const potionButton = $(".potion")
             potionButton.remove()
-        }
+           }
 
-        
-
-         //enemy still attacks
-         this.health -= Monster.damage
+       
 
          //hp updates
          let hp= $(".health")
@@ -105,7 +139,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
              width: this.health + "%"
                   },1000);
     } 
-    useHolyWater(Monster){
+    useHolyWater(Boss){
         const message=" you use a your HOLY WATER and deal 80 dmg"
         const eventLog=$(".log")
         eventLog.append(message)
@@ -113,8 +147,8 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
 
         let  dmg = 80 ;
-        Monster.health -= dmg
-        console.log(Monster.health)
+        Boss.health -= dmg
+        console.log(Boss.health)
 
 
 
@@ -155,6 +189,14 @@ const slogra= new Monster("slogra",20,10)
 
 //need a final boss
 
+class Boss{
+    constructior(name,health,damage){
+        this.name=name
+        this.health=health
+        this.damage=damage
+    }
+}
+
 const dracula = new Monster("Dracula",100,15)
 
 
@@ -179,6 +221,7 @@ function onDragOver(event) {
 }
 
 function onDrop1(event){
+
     //movement
     event.preventDefault()
     let position = $("#room1")
@@ -270,7 +313,8 @@ function onDrop7(event){
     position.append($("#hero-image"))
     position.append($("#dracula"))
     $(".fight-buttons").css("visibility","visible")
-    document.getElementById("fight").setAttribute("onclick","belmont.attack(dracula)") 
+    $(".holy-water").css("visibility","visibile")
+    document.getElementById("fight").setAttribute("onclick","belmont.attackBoss(dracula)") 
 
 
      }

@@ -313,8 +313,9 @@ function onDrop7(event){
     position.append($("#hero-image"))
     position.append($("#dracula"))
     $(".fight-buttons").css("visibility","visible")
-    $(".holy-water").css("visibility","visibile")
+    $("#holywater").css("visibility","visible")
     document.getElementById("fight").setAttribute("onclick","belmont.attackBoss(dracula)") 
+    document.getElementById("holywater").setAttribute("onclick","belmont.useHolyWater(dracula)")
 
 
      }

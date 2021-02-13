@@ -205,6 +205,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
         let snd = new Audio("potion.wav")
          snd.play()
+         
         //message
         const message="--you use a potion and restore your HP fully"
         const eventLog=$(".log")
@@ -234,6 +235,10 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
                   },1000);
     } 
     useHolyWater(Boss){
+
+        let snd = new Audio("holy.wav")
+         snd.play()
+
         const message="--you use  your HOLY WATER and deal 80 dmg"
         const eventLog=$(".log")
         eventLog.append(message)

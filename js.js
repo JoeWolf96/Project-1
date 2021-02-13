@@ -373,8 +373,6 @@ function onDragOver(event) {
 
 function onDrop1(event){
  
-    if(skeleton1.health >= 0){
-
     //movement
     event.preventDefault()
     let position = $("#room1")
@@ -387,11 +385,6 @@ function onDrop1(event){
     belmont.fightBegins()
     //change button function
     document.getElementById("fight").setAttribute("onclick","belmont.attack(skeleton1)") 
-    }
-      else{
-       event.preventDefault()
-    let position = $("#room1")
-    position.append($("#hero-image"))
        
 }
 

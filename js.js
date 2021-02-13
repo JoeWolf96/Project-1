@@ -55,6 +55,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
         let  dmg = this.weapon.damage ;
         Monster.health -= dmg
+     
 
         const enemyHp="--"+Monster.name+" has "+Monster.health+"HP remaining"
         const eventLog2=$(".log");
@@ -65,8 +66,12 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
        //enemy attacks
 
         this.health -= Monster.damage
-        console.log(this.health)
-
+        if(this.health <=0){
+            alert("You Lost, refresh the page to try again")
+            $(".fight-buttons").off("click");
+         $('#hero-image').attr('draggable', false);
+         $("#skeleton").attr("draggable",false)
+        }
 
        // update hp 
        
@@ -109,7 +114,12 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         eventLog2.append(enemyHp)
        //enemy attacks
         this.health -= Boss.damage
-        console.log(this.health)
+        if(this.health <=0){
+            alert("You Lost, refresh the page to try again")
+            $(".fight-buttons").off("click");
+         $('#hero-image').attr('draggable', false);
+         $("#dracula").attr("draggable",false)
+        }
 
 
        // update hp 
@@ -156,6 +166,12 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
        //enemy attacks
         this.health -= Monster.damage
+        if(this.health <=0){
+            alert("You Lost, refresh the page to try again")
+            $(".fight-buttons").off("click");
+         $('#hero-image').attr('draggable', false);
+         $("#slogra").attr("draggable",false)
+        }
          
  
 

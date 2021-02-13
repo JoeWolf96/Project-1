@@ -31,6 +31,8 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
     }
      fightBegins(Monster , room) {
+        //prevent belmont from escape
+        $('#hero-image').attr('draggable', false);
 
         let snd = new Audio("walk.wav")
          snd.play()
@@ -67,6 +69,12 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         this.health -= Monster.damage
         console.log(this.health)
 
+        if(this.health <=0){
+            alert("You Lost, refresh the page to try again")
+            $(".fight-buttons").off("click");
+         $('#hero-image').attr('draggable', false);
+        }
+
 
        // update hp 
        
@@ -84,7 +92,8 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         const eventLog=$(".log");
         eventLog.append(message);
 
-       //end of the fight ui disappears
+       //end of the fight ui disappears and you can move again
+       $('#hero-image').attr('draggable', true);
         $("#skeleton").css("visibility","hidden")
         
         
@@ -108,8 +117,17 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         const eventLog2=$(".log");
         eventLog2.append(enemyHp)
        //enemy attacks
+
         this.health -= Boss.damage
-        console.log(this.health)
+
+        if(this.health <=0){
+            alert("You Lost, refresh the page to try again")
+            $(".fight-buttons").off("click");
+         $('#hero-image').attr('draggable', false);
+        }
+
+        
+
 
 
        // update hp 
@@ -156,6 +174,13 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
        //enemy attacks
         this.health -= Monster.damage
+        if(this.health <=0){
+            alert("You Lost, refresh the page to try again")
+            $(".fight-buttons").off("click");
+         $('#hero-image').attr('draggable', false);
+         $("#dracula").attr("draggable",false)
+        }
+
          
  
 
@@ -247,15 +272,18 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
         let  dmg = 80 ;
         Boss.health -= dmg
-        console.log(Boss.health)
 
+        const enemyHp=Boss.name+" has "+Boss.health+"HP remaining"
+        const eventLog2=$(".log");
+        eventLog2.append(enemyHp)
+       
          this.inventory.holy_waters -= 1
  
         if(this.inventory.holy_waters== 0){
             const holyButton = $("#holywater")
             holyButton.remove()}
 
-             else if (Boss.health == 0){
+        if (Boss.health <= 0){
             $("#dracula").css("visibility","hidden")
             $(".holy-water").css("visibility","hidden")
             $(".fight-buttons").css("visibility","hidden")
@@ -277,6 +305,9 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 //create hero
 
 const belmont = new Hero();
+
+
+
 
 
 console.log(belmont)
@@ -400,7 +431,7 @@ function onDrop4(event){
 
 function onDrop5(event){
      event.preventDefault()
-     belmont.fightBegins()
+     
   
     let position = $("#room5")
     position.append($("#hero-image"))
@@ -425,14 +456,15 @@ function onDrop6(event){
 
 
 function onDrop7(event){
-    $("#myAudio").remove()
-    let snd = new Audio("final_boss.mp3")
-         snd.play()
+    
     
 
 
      event.preventDefault()
      if(belmont.key == true){
+        $("#myAudio").remove()
+    let snd = new Audio("final_boss.mp3")
+         snd.play()
   
     let position = $("#room7")
     position.append($("#hero-image"))

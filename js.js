@@ -425,14 +425,15 @@ function onDrop6(event){
 
 
 function onDrop7(event){
-    $("#myAudio").remove()
-    let snd = new Audio("final_boss.mp3")
-         snd.play()
+   
     
 
 
      event.preventDefault()
      if(belmont.key == true){
+         $("#myAudio").remove()
+    let snd = new Audio("final_boss.mp3")
+         snd.play()
   
     let position = $("#room7")
     position.append($("#hero-image"))

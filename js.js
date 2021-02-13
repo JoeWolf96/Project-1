@@ -86,7 +86,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
                   },1000);
 
         //condition to stop fight
-        if (Monster.health == 0){
+        if (Monster.health <= 0){
 
         const message="--you defeated "+ Monster.name
         const eventLog=$(".log");
@@ -140,7 +140,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
                   },1000);
 
         //condition to stop fight
-        if (Boss.health == 0){
+        if (Boss.health <= 0){
             $("#dracula").css("visibility","hidden")
             $(".holy-water").css("visibility","hidden")
             $(".fight-buttons").css("visibility","hidden")

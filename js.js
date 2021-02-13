@@ -314,6 +314,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
 const belmont = new Hero();
 
+
 console.log(belmont)
 
 
@@ -462,14 +463,20 @@ function onDrop6(event){
 function onDrop7(event){
 
 
+    
+
+
+
      event.preventDefault()
 
      if(belmont.key == true){
 
+
      $("#myAudio").remove()
      let snd = new Audio("final_boss.mp3")
      snd.play()
-  
+
+    
      let position = $("#room7")
      position.append($("#hero-image"))
      position.append($("#dracula"))

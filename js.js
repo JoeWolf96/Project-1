@@ -41,7 +41,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
         const eventLog=$(".log")
 
         eventLog.append(message)
-        console.log(eventLog.html())
+        
 
     }
     attack(Monster){ 
@@ -94,7 +94,7 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
        //end of the fight ui disappears and you can move again
        $('#hero-image').attr('draggable', true);
-        $("#skeleton").css("visibility","hidden")
+       $("#skeleton").css("visibility","hidden")
         
         
         $(".fight-buttons").css("visibility","hidden")
@@ -174,11 +174,17 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
        //enemy attacks
         this.health -= Monster.damage
+
+
+
+
+
         if(this.health <=0){
             alert("You Lost, refresh the page to try again")
             $(".fight-buttons").off("click");
          $('#hero-image').attr('draggable', false);
          $("#dracula").attr("draggable",false)
+
         }
 
          
@@ -197,14 +203,16 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
                   },1000);
 
         //condition to stop fight
-        if (Monster.health == 0){
+        if (Monster.health <= 0){
 
         const message="--you defeated "+ Monster.name
         const eventLog=$(".log");
         eventLog.append(message);
 
+
        //end of the fight ui disappear
         $("#slogra").remove()
+        $('#hero-image').attr('draggable', true);
         
         $(".fight-buttons").css("visibility","hidden")
         //key is now true
@@ -306,10 +314,6 @@ return myAudio.paused ? myAudio.play() : myAudio.pause();
 
 const belmont = new Hero();
 
-
-
-
-
 console.log(belmont)
 
 
@@ -347,7 +351,7 @@ class Boss{
 const dracula = new Monster("Dracula",100,15)
 
 
-//key 
+
 
 
 
@@ -456,30 +460,29 @@ function onDrop6(event){
 
 
 function onDrop7(event){
-    
-    
 
 
      event.preventDefault()
+
      if(belmont.key == true){
-        $("#myAudio").remove()
-    let snd = new Audio("final_boss.mp3")
-         snd.play()
+
+     $("#myAudio").remove()
+     let snd = new Audio("final_boss.mp3")
+     snd.play()
   
-    let position = $("#room7")
-    position.append($("#hero-image"))
-    position.append($("#dracula"))
-    $(".fight-buttons").css("visibility","visible")
-    $("#holywater").css("visibility","visible")
-    document.getElementById("fight").setAttribute("onclick","belmont.attackBoss(dracula)") 
-    document.getElementById("holywater").setAttribute("onclick","belmont.useHolyWater(dracula)")
+     let position = $("#room7")
+     position.append($("#hero-image"))
+     position.append($("#dracula"))
+     $(".fight-buttons").css("visibility","visible")
+     $("#holywater").css("visibility","visible")
+     document.getElementById("fight").setAttribute("onclick","belmont.attackBoss(dracula)") 
+     document.getElementById("holywater").setAttribute("onclick","belmont.useHolyWater(dracula)")
 
 
      }
      else {
         const message="The door is locked! You ll need a key to access this"
-        const eventLog=$(".log")
-        eventLog.append(message)
+        alert(message)
      }
   
 }
